@@ -1,12 +1,13 @@
 plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id 'java'
+    id 'java-library'
     id 'com.jfrog.bintray' version "1.8.5"
+    id 'maven-publish'
 }
 
 group = 'com.jiangtj.common'
-version = '0.0.1'
+version = '0.0.7'
 sourceCompatibility = '8'
 
 configurations {
@@ -20,8 +21,8 @@ repositories {
 }
 
 dependencies {
+    api 'com.atlassian.commonmark:commonmark:0.15.2'
     implementation 'org.springframework.boot:spring-boot-starter'
-    implementation 'com.atlassian.commonmark:commonmark:0.15.2'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
@@ -35,10 +36,67 @@ test {
     useJUnitPlatform()
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+jar {
+    enabled = true
+}
+
+javadoc {
+    if(JavaVersion.current().isJava9Compatible()) {
+        options.addBooleanOption('html5', true)
+    }
+}
+
+// Create the publication with the pom configuration:
+publishing {
+    publications {
+        maven(MavenPublication) {
+            artifactId = project.getName()
+            from components.java
+            //artifact bootJar
+            versionMapping {
+                usage('java-api') {
+                    fromResolutionOf('runtimeClasspath')
+                }
+                usage('java-runtime') {
+                    fromResolutionResult()
+                }
+            }
+            pom {
+                name = 'commonmark-spring-starter'
+                description = 'A spring starter wapper for commonmark'
+                url = 'https://github.com/jiangtj-lab/commonmark-spring-starter'
+                licenses {
+                    license {
+                        name = 'The Apache License, Version 2.0'
+                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                    }
+                }
+                developers {
+                    developer {
+                        id = 'jiangtj'
+                        name = 'Jiang TJ'
+                        email = 'i@dnocm.com'
+                    }
+                }
+                scm {
+                    connection = 'scm:git:git://github.com/jiangtj-lab/commonmark-spring-starter.git'
+                    developerConnection = 'scm:git:ssh://github.com/jiangtj-lab/commonmark-spring-starter.git'
+                    url = 'https://github.com/jiangtj-lab/commonmark-spring-starter'
+                }
+            }
+        }
+    }
+}
+
 bintray {
-    user = System.getenv('BINTRAY_USER')
-    key = System.getenv('BINTRAY_KEY')
-    configurations = ['archives']
+    user = project.property('bintray.user')
+    key = project.property('bintray.key')
+    publications = ['maven']
     pkg {
         repo = 'maven'
         name = 'commonmark-spring-starter'
