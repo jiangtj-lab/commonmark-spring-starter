@@ -2,12 +2,15 @@ package com.jiangtj.common.commonmarkspringstarter;
 
 import org.commonmark.Extension;
 import org.commonmark.parser.Parser;
+import org.commonmark.parser.block.BlockParserFactory;
+import org.commonmark.parser.delimiter.DelimiterProcessor;
 import org.commonmark.renderer.html.AttributeProviderFactory;
 import org.commonmark.renderer.html.HtmlNodeRendererFactory;
 import org.commonmark.renderer.html.HtmlRenderer;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 
@@ -21,10 +24,17 @@ public class CommonmarkConfiguration {
 
     @Bean
     public Parser parser(Properties properties,
-                         List<Extension> extensions) {
-        return Parser.builder()
-                .extensions(extensions)
-                .build();
+                         List<Extension> extensions,
+                         List<BlockParserFactory> blockParsers,
+                         List<DelimiterProcessor> delimiterProcessors) {
+        Parser.Builder builder = Parser.builder()
+                .extensions(extensions);
+        if (!CollectionUtils.isEmpty(properties.getEnabledBlockTypes())) {
+            builder.enabledBlockTypes(properties.getEnabledBlockTypes());
+        }
+        blockParsers.forEach(builder::customBlockParserFactory);
+        delimiterProcessors.forEach(builder::customDelimiterProcessor);
+        return builder.build();
     }
 
     @Bean
