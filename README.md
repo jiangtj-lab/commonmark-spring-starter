@@ -6,19 +6,17 @@ A spring boot starter wapper for commonmark
 Add the following configuration in your pom file
 
 ```xml
-<!-- add this in root element -->
+<!-- add jcenter repositories in root element or setting.xml -->
 <repositories>
     <repository>
-        <snapshots>
-            <enabled>false</enabled>
-        </snapshots>
+        <snapshots><enabled>false</enabled></snapshots>
         <id>bintray-jiangtj-maven</id>
         <name>bintray</name>
-        <url>https://dl.bintray.com/jiangtj/maven</url>
+        <url>https://jcenter.bintray.com</url>
     </repository>
 </repositories>
 
-<!-- add this in root dependencies -->
+<!-- add this in dependencies -->
 <dependency>
     <groupId>com.jiangtj.common</groupId>
     <artifactId>commonmark-spring-starter</artifactId>
