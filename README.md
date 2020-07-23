@@ -10,7 +10,7 @@ Add the following configuration in your pom file
 <repositories>
     <repository>
         <snapshots><enabled>false</enabled></snapshots>
-        <id>bintray-jiangtj-maven</id>
+        <id>central</id>
         <name>bintray</name>
         <url>https://jcenter.bintray.com</url>
     </repository>
