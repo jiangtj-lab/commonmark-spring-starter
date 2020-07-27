@@ -7,9 +7,9 @@ import org.commonmark.renderer.html.HtmlNodeRendererContext;
 import org.commonmark.renderer.html.HtmlNodeRendererFactory;
 import org.commonmark.renderer.html.HtmlWriter;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Resource;
 import java.util.Collections;
@@ -21,7 +21,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Created by MrTT (jiang.taojie@foxmail.com)
  * 2020/7/23.
  */
-@SpringBootTest
+@ApplicationTest
+@ContextConfiguration(classes = {HtmlNodeRendererTests.HtmlNodeBean.class})
 public class HtmlNodeRendererTests {
 
     @Resource

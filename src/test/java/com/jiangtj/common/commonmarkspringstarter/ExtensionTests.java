@@ -3,9 +3,9 @@ package com.jiangtj.common.commonmarkspringstarter;
 import org.commonmark.Extension;
 import org.commonmark.ext.task.list.items.TaskListItemsExtension;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.ContextConfiguration;
 
 import javax.annotation.Resource;
 
@@ -15,7 +15,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Created by MrTT (jiang.taojie@foxmail.com)
  * 2020/7/22.
  */
-@SpringBootTest
+@ApplicationTest
+@ContextConfiguration(classes = {ExtensionTests.TestBeans.class})
 public class ExtensionTests {
 
     @Resource
