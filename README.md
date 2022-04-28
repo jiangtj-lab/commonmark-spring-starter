@@ -3,26 +3,20 @@ A spring boot starter wapper for commonmark
 
 ## Install
 
-Add the following configuration in your pom file
+1/2: Add this to pom.xml:
 
 ```xml
-<!-- add jcenter repositories in root element or setting.xml -->
-<repositories>
-    <repository>
-        <snapshots><enabled>false</enabled></snapshots>
-        <id>central</id>
-        <name>bintray</name>
-        <url>https://jcenter.bintray.com</url>
-    </repository>
-</repositories>
-
-<!-- add this in dependencies -->
 <dependency>
-    <groupId>com.jiangtj.common</groupId>
-    <artifactId>commonmark-spring-starter</artifactId>
-    <version>0.0.9</version>
+  <groupId>com.jiangtj.common</groupId>
+  <artifactId>commonmark-spring-starter</artifactId>
+  <version>${last-version}</version>
 </dependency>
 ```
+
+2/2: Configuring github packages
+
+[configuring-apache-maven-for-use-with-github-packages](https://docs.github.com/en/packages/guides/configuring-apache-maven-for-use-with-github-packages)
+
 
 ## Usage
 

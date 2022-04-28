@@ -2,7 +2,6 @@ plugins {
     id 'org.springframework.boot' version '2.3.1.RELEASE'
     id 'io.spring.dependency-management' version '1.0.9.RELEASE'
     id 'java-library'
-    id 'com.jfrog.bintray' version "1.8.5"
     id 'maven-publish'
 }
 
@@ -51,57 +50,21 @@ javadoc {
     }
 }
 
-// Create the publication with the pom configuration:
 publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/jiangtj-lab/commonmark-spring-starter")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+                password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+            }
+        }
+    }
     publications {
-        maven(MavenPublication) {
-            artifactId = project.getName()
-            from components.java
-            //artifact bootJar
-            versionMapping {
-                usage('java-api') {
-                    fromResolutionOf('runtimeClasspath')
-                }
-                usage('java-runtime') {
-                    fromResolutionResult()
-                }
-            }
-            pom {
-                name = 'commonmark-spring-starter'
-                description = 'A spring starter wapper for commonmark'
-                url = 'https://github.com/jiangtj-lab/commonmark-spring-starter'
-                licenses {
-                    license {
-                        name = 'The Apache License, Version 2.0'
-                        url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'jiangtj'
-                        name = 'Jiang TJ'
-                        email = 'i@dnocm.com'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git://github.com/jiangtj-lab/commonmark-spring-starter.git'
-                    developerConnection = 'scm:git:ssh://github.com/jiangtj-lab/commonmark-spring-starter.git'
-                    url = 'https://github.com/jiangtj-lab/commonmark-spring-starter'
-                }
-            }
+        gpr(MavenPublication) {
+            from(components.java)
         }
     }
 }
 
-bintray {
-    user = project.property('bintray.user')
-    key = project.property('bintray.key')
-    publications = ['maven']
-    pkg {
-        repo = 'maven'
-        name = 'commonmark-spring-starter'
-        userOrg = 'jiangtj'
-        licenses = ['Apache-2.0']
-        vcsUrl = 'https://github.com/jiangtj-lab/commonmark-spring-starter'
-    }
-}
