@@ -6,8 +6,8 @@ plugins {
 }
 
 group = 'com.jiangtj.common'
-version = '0.0.9'
-sourceCompatibility = '8'
+version = '0.1.0'
+sourceCompatibility = '17'
 
 configurations {
     compileOnly {
@@ -26,12 +26,10 @@ dependencies {
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'com.atlassian.commonmark:commonmark-ext-task-list-items:0.17.0'
-    testImplementation('org.springframework.boot:spring-boot-starter-test') {
-        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-    }
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-test {
+tasks.named('test') {
     useJUnitPlatform()
 }
 
@@ -64,6 +62,9 @@ publishing {
     publications {
         gpr(MavenPublication) {
             from(components.java)
+        }
+        bootJava(MavenPublication) {
+            artifact tasks.named("bootJar")
         }
     }
 }
