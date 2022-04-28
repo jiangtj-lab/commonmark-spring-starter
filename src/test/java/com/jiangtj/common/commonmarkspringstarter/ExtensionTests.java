@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ExtensionTests {
 
     @Resource
-    private Commonmarks commonmarks;
+    private CommonMark commonMark;
 
     @TestConfiguration
     public static class TestBeans {
@@ -32,7 +32,7 @@ public class ExtensionTests {
 
     @Test
     void testTaskListItemsExtension() {
-        String result = commonmarks.render("- [ ] task #1\n- [x] task #2");
+        String result = commonMark.render("- [ ] task #1\n- [x] task #2");
         assertEquals("<ul>\n" +
                 "<li><input type=\"checkbox\" disabled=\"\"> task #1</li>\n" +
                 "<li><input type=\"checkbox\" disabled=\"\" checked=\"\"> task #2</li>\n" +

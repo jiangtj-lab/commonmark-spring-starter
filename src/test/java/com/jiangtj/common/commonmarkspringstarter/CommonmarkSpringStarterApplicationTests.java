@@ -11,16 +11,16 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 class CommonmarkSpringStarterApplicationTests {
 
     @Resource
-    private Commonmarks commonmarks;
+    private CommonMark commonMark;
 
     @Test
     void contextLoads() {
-        assertNotNull(commonmarks);
+        assertNotNull(commonMark);
     }
 
     @Test
     void testCommonmarksRender() {
-        String result = commonmarks.render("This is *Sparta*");
+        String result = commonMark.render("This is *Sparta*");
         assertEquals("<p>This is <em>Sparta</em></p>\n", result);
     }
 

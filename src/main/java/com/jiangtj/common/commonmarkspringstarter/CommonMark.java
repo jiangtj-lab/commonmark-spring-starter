@@ -8,7 +8,7 @@ import org.commonmark.renderer.html.HtmlRenderer;
  * Created by MrTT (jiang.taojie@foxmail.com)
  * 2020/7/22.
  */
-public record Commonmarks(Parser parser, HtmlRenderer renderer) {
+public record CommonMark(Parser parser, HtmlRenderer renderer) {
 
     /**
      * 渲染 md 内容为 html

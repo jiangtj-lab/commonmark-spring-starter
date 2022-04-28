@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HtmlNodeRendererTests {
 
     @Resource
-    private Commonmarks commonmarks;
+    private CommonMark commonmarks;
 
     @TestConfiguration
     static class HtmlNodeBean {

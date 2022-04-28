@@ -7,6 +7,8 @@ import org.commonmark.parser.delimiter.DelimiterProcessor;
 import org.commonmark.renderer.html.AttributeProviderFactory;
 import org.commonmark.renderer.html.HtmlNodeRendererFactory;
 import org.commonmark.renderer.html.HtmlRenderer;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,7 +22,8 @@ import java.util.List;
  */
 @Configuration
 @EnableConfigurationProperties({ Properties.class })
-public class CommonmarkConfiguration {
+@ConditionalOnProperty(prefix = "commonmark", value = "enabled", havingValue = "true", matchIfMissing = true)
+public class CommonMarkConfiguration {
 
     /**
      * 设置 parser
@@ -31,6 +34,7 @@ public class CommonmarkConfiguration {
      * @return Parser
      */
     @Bean
+    @ConditionalOnMissingBean
     public Parser parser(Properties properties,
                          List<Extension> extensions,
                          List<BlockParserFactory> blockParsers,
@@ -54,6 +58,7 @@ public class CommonmarkConfiguration {
      * @return HtmlRenderer
      */
     @Bean
+    @ConditionalOnMissingBean
     public HtmlRenderer renderer(Properties properties,
                                  List<Extension> extensions,
                                  List<AttributeProviderFactory> attributes,
@@ -76,8 +81,9 @@ public class CommonmarkConfiguration {
      * @return Commonmarks
      */
     @Bean
-    public Commonmarks commonmarks(Parser parser, HtmlRenderer renderer) {
-        return new Commonmarks(parser, renderer);
+    @ConditionalOnMissingBean
+    public CommonMark commonMark(Parser parser, HtmlRenderer renderer) {
+        return new CommonMark(parser, renderer);
     }
 
 }

@@ -12,6 +12,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
-@SpringBootTest(classes = {CommonmarkConfiguration.class})
+@SpringBootTest(classes = {CommonMarkConfiguration.class})
 public @interface ApplicationTest {
 }

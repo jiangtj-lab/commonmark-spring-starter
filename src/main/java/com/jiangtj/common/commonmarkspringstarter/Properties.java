@@ -13,6 +13,7 @@ import java.util.Set;
 @Data
 @ConfigurationProperties("commonmark")
 public class Properties {
+    private boolean enabled = true;
     private String softbreak = "\n";
     private boolean escapeHtml = false;
     private boolean sanitizeUrls = false;

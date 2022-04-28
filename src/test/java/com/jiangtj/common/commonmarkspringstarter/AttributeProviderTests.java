@@ -23,7 +23,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AttributeProviderTests {
 
     @Resource
-    private Commonmarks commonmarks;
+    private CommonMark commonMark;
 
     @TestConfiguration
     static class AttributeBean {
@@ -44,7 +44,7 @@ public class AttributeProviderTests {
 
     @Test
     void testAttributes() {
-        String result = commonmarks.render("![](https://example.com/pic.jpg)");
+        String result = commonMark.render("![](https://example.com/pic.jpg)");
         assertEquals("<p><img src=\"https://example.com/pic.jpg\" alt=\"\" class=\"border\" /></p>\n", result);
     }
 }

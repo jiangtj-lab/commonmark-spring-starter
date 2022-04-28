@@ -20,12 +20,12 @@ repositories {
 }
 
 dependencies {
-    api 'com.atlassian.commonmark:commonmark:0.17.0'
+    api 'org.commonmark:commonmark:0.18.2'
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'com.atlassian.commonmark:commonmark-ext-task-list-items:0.17.0'
+    testImplementation 'org.commonmark:commonmark-ext-task-list-items:0.18.2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
