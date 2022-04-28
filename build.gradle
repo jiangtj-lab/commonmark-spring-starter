@@ -25,7 +25,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'com.atlassian.commonmark:commonmark-ext-task-list-items:0.15.2'
+    testImplementation 'com.atlassian.commonmark:commonmark-ext-task-list-items:0.17.0'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
