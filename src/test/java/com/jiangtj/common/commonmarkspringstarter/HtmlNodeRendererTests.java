@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class HtmlNodeRendererTests {
 
     @Resource
-    private CommonMark commonmarks;
+    private CommonMark commonMark;
 
     @TestConfiguration
     static class HtmlNodeBean {
@@ -60,7 +60,7 @@ public class HtmlNodeRendererTests {
 
     @Test
     void testHtmlNode() {
-        String result = commonmarks.render("IndentedCodeBlock: \n" +
+        String result = commonMark.render("IndentedCodeBlock: \n" +
                 "\n" +
                 "    void testHtmlNode() {\n" +
                 "      assertEquals(...)\n" +

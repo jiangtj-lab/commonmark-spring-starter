@@ -20,32 +20,25 @@ A spring boot starter wapper for commonmark
 
 ## Usage
 
-Step1: enable automatic configuration
-```java
-@EnableCommonmark
-public class ApplicationOrConfiguration {
-}
-```
-
-Step2: We provide Parser and HtmlRenderer instance, you can easily inject
+We provide Parser and HtmlRenderer instance, you can easily inject
 
 ```java
 @Resource
 private Parser parser;
 @Resource
-private HtmlRenderer htmlRenderer;
+private HtmlRenderer renderer;
 
 Node document = parser.parse("This is *Sparta*");
 renderer.render(document);
 ```
 
-Step3: Normally, we don't care about the middle process, so you can use Commonmarks simplified
+Normally, we don't care about the middle process, so you can use CommonMark simplified
 
 ```java
 @Resource
-private Commonmarks commonmarks;
+private CommonMark commonMark;
 
-commonmarks.render(document); // == parser.parse() and renderer.render()
+commonMark.render(document); // == parser.parse() and renderer.render()
 ```
 
 ## Custom
@@ -84,9 +77,9 @@ Extension is the same, only need to provide an extended instance.
 
 ```xml
 <dependency>
-    <groupId>com.atlassian.commonmark</groupId>
+    <groupId>org.commonmark</groupId>
     <artifactId>commonmark-ext-task-list-items</artifactId>
-    <version>0.15.2</version>
+    <version>0.18.2</version>
 </dependency>
 ```
 
