@@ -38,14 +38,12 @@ java {
     withSourcesJar()
 }
 
-jar {
-    enabled = true
+tasks.named("bootJar") {
+    archiveClassifier = 'boot'
 }
 
-javadoc {
-    if(JavaVersion.current().isJava9Compatible()) {
-        options.addBooleanOption('html5', true)
-    }
+tasks.named("jar") {
+    archiveClassifier = ''
 }
 
 publishing {
@@ -63,9 +61,9 @@ publishing {
         gpr(MavenPublication) {
             from(components.java)
         }
-        bootJava(MavenPublication) {
-            artifact tasks.named("bootJar")
-        }
+//        bootJava(MavenPublication) {
+//            artifact tasks.named("bootJar")
+//        }
     }
 }
 
