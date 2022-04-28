@@ -21,7 +21,7 @@ repositories {
 
 dependencies {
     api 'com.atlassian.commonmark:commonmark:0.17.0'
-    implementation 'org.springframework.boot:spring-boot-starter'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
@@ -39,11 +39,16 @@ java {
 }
 
 tasks.named("bootJar") {
+    enabled = false
     archiveClassifier = 'boot'
 }
 
 tasks.named("jar") {
     archiveClassifier = ''
+}
+
+tasks.named("javadoc") {
+    options.encoding = 'UTF-8'
 }
 
 publishing {
@@ -61,9 +66,6 @@ publishing {
         gpr(MavenPublication) {
             from(components.java)
         }
-//        bootJava(MavenPublication) {
-//            artifact tasks.named("bootJar")
-//        }
     }
 }
 

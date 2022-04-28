@@ -22,6 +22,14 @@ import java.util.List;
 @EnableConfigurationProperties({ Properties.class })
 public class CommonmarkConfiguration {
 
+    /**
+     * 设置 parser
+     * @param properties 配置文件，来自 spring
+     * @param extensions 自定义扩展
+     * @param blockParsers 自定义块解析
+     * @param delimiterProcessors 自定义处理
+     * @return Parser
+     */
     @Bean
     public Parser parser(Properties properties,
                          List<Extension> extensions,
@@ -37,6 +45,14 @@ public class CommonmarkConfiguration {
         return builder.build();
     }
 
+    /**
+     * 设置 渲染器
+     * @param properties 配置文件，来自 spring
+     * @param extensions 自定义扩展
+     * @param attributes todo
+     * @param htmlNodes todo
+     * @return HtmlRenderer
+     */
     @Bean
     public HtmlRenderer renderer(Properties properties,
                                  List<Extension> extensions,
@@ -53,6 +69,12 @@ public class CommonmarkConfiguration {
         return builder.build();
     }
 
+    /**
+     * Commonmarks
+     * @param parser 解析器
+     * @param renderer 渲染器
+     * @return Commonmarks
+     */
     @Bean
     public Commonmarks commonmarks(Parser parser, HtmlRenderer renderer) {
         return new Commonmarks(parser, renderer);
