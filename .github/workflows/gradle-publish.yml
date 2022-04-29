@@ -34,7 +34,7 @@ jobs:
       - name: Execute Gradle build
         run: gradle build
 
-      - name: Execute Gradle build
+      - name: Execute Gradle publish
         run: gradle publish
         env:
           USERNAME: ${{ github.actor }}
