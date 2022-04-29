@@ -28,7 +28,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/gradle-build-action@fec4a42eb0c83154e5c9590748ba8337949c5701
 
       - name: Execute Gradle build
         run: gradle build
