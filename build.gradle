@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    api 'org.commonmark:commonmark:0.18.2'
+    api 'org.commonmark:commonmark:0.20.0'
     implementation 'org.springframework.boot:spring-boot-autoconfigure'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
