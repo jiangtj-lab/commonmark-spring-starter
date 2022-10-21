@@ -25,7 +25,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
     annotationProcessor 'org.projectlombok:lombok'
-    testImplementation 'org.commonmark:commonmark-ext-task-list-items:0.18.2'
+    testImplementation 'org.commonmark:commonmark-ext-task-list-items:0.20.0'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
